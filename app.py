@@ -14,10 +14,10 @@ tts = TTS("tts_models/multilingual/multi-dataset/xtts_v2").to(device)
 @app.post("/generar-voz")
 async def generar_voz(texto: str = Form(...)):
     output_path = "output.wav"
-    speaker_wav = "locutor.wav"
+    speaker_wav = "locutor.wav.mp3"
 
     if not os.path.exists(speaker_wav):
-        raise HTTPException(status_code=400, detail="No se encontró el archivo de voz base (locutor.wav)")
+        raise HTTPException(status_code=400, detail="No se encontró el archivo de voz base (locutor.wav.mp3)")
 
     try:
         tts.tts_to_file(
